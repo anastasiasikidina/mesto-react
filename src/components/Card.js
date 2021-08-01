@@ -9,13 +9,12 @@ function Card(props) {
     }
 
         return (
-            <article key={card._id} className="photo">
+            <article className="photo">
                 <div className="photo__image-container">
                     <button className="photo__trash" aria-label="Удалить" type="button"></button>
                     <img
                         className="photo__image photo__image_open"
                         src={card.link} alt={card.name}
-                        name="name"
                         onClick={handleClick} />
                 </div>
                 <h3
@@ -23,7 +22,7 @@ function Card(props) {
                     name="link">{card.name}</h3>
                 <div className="photo__like-container">
                     <button className="photo__like" type="button" aria-label="Нравится"></button>
-                    <p className="photo__like-counter"></p>
+                    <p className="photo__like-counter">{card.likes.length}</p>
                 </div>
             </article>
         )

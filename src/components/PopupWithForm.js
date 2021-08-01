@@ -8,7 +8,7 @@ export default function PopupWithForm(props) {
 
             <button className={`button-close popup__cross popup__cross_btn_close-${name}`}
                 type="button" onClick={onClose}></button>
-            <form id="popup__form" className={`popup__form popup__form_${name}`} method="get" name={`${name}-form`} noValidate>
+            <form className={`popup__form popup__form_${name}`} name={`${name}-form`}>
 
                 <h2 className="popup__title">{title}</h2>
 
