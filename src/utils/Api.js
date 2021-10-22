@@ -60,6 +60,14 @@ class Api {
       })
       .then(this._checkResponse);
     }
+
+    _dislikeCard(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers,
+        })
+            .then(this._checkResponse)
+    }
   
     setLike(cardId){
       return fetch(`${this._url}/cards/likes/${cardId}`,{
@@ -67,6 +75,18 @@ class Api {
         headers: this._headers
       })
       .then(this._checkResponse);
+    }
+
+    _likeCard(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._headers,
+        })
+            .then(this._checkResponse)
+    }
+
+    changeLikeCardStatus(cardId, status) {
+        return status ? this._likeCard(cardId) : this._dislikeCard(cardId);
     }
   
     removeLike(cardId){
@@ -84,6 +104,24 @@ class Api {
       })
       .then(this._checkResponse);
     }
+
+    setUserInfo(data) {
+        return fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify(data)
+        })
+            .then(this._checkResponse)
+    }
+
+    createNewCard(data) {
+        return fetch(`${this._url}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify(data)
+        })
+            .then(this._checkResponse)
+    }
   }
 
   const api = new Api({
@@ -94,4 +132,4 @@ class Api {
     },
   });
 
-  export {api};
+  export default api;

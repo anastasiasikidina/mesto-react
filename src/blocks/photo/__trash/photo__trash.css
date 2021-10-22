@@ -16,3 +16,11 @@
 .photo__trash:hover {
     opacity: 0.6;
 }
+
+.photo__trash_visible {
+    display: block;
+}
+
+.photo__trash_hidden {
+    display: none;
+}

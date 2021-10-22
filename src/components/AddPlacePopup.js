@@ -1,28 +1,62 @@
-import PopupWithForm from './PopupWithForm';
+import PopupWithForm from "./PopupWithForm";
+import React, { useEffect, useState } from "react";
 
-function AddPlacePopup(props) {
-    const { isOpen, onClose } = props;
-    return (
-        <PopupWithForm                
-        name='photo'
-        title='Новое место'
-        buttonText='Создать'
+function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
+  useEffect(() => {
+    setName("");
+    setLink("");
+  }, [isOpen]);
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+  function handleLinkChange(e) {
+    setLink(e.target.value);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    onAddPlace({
+      name: name,
+      link: link,
+    });
+  }
+  return (
+    <PopupWithForm
+      name="photo"
+      title="Новое место"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleNameChange}
+          placeholder="Название"
+          className="popup__input popup__input_type_title"
+          id="popup__input_type_title"
+          required
+          minLength="1"
+          maxLength="30"
+        />
 
-        isOpen={isOpen}
-        onClose={onClose}
-        >
+        <span id="popup__input_type_title-error" className="popup__error"></span>
 
-            <input id="popup__input_type_title" className="popup__input popup__input_type_title" type="text" name="name"
-                placeholder="Название" minLength="1" maxLength="30" required />
-            <span id="popup__input_type_title-error" className="popup__error"></span>
-
-            <input id="popup__input_type_image" className="popup__input popup__input_type_image" type="url" name="link"
-                placeholder="Ссылка на картинку" required />
-            <span id="popup__input_type_image-error" className="popup__error"></span>
-
-        </PopupWithForm>
-    )
+        <input
+          type="url"
+          name="link"
+          value={link}
+          onChange={handleLinkChange}
+          placeholder="Ссылка на картинку"
+          className="popup__input popup__input_type_image"
+          id="popup__input_type_image"
+          required
+        />
+        <span id="popup__input_type_image-error" className="popup__error"></span>
+    </PopupWithForm>
+  );
 }
-
 
 export default AddPlacePopup;

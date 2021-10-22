@@ -6,7 +6,7 @@ function Header() {
         <header className="header">
             <img className="logo header__logo" src={headerLogo} alt="Логотип Mesto" />
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;
